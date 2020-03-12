@@ -1,0 +1,14 @@
+name: local_storage_example
+description: Demonstrates how to use the local_storage package.
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  local_storage:
+    path: ../
+
+flutter:
+  uses-material-design: true

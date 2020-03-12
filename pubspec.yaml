@@ -1,0 +1,21 @@
+name: local_storage
+version: 1.0.0
+homepage: https://github.com/marchdev-tk/local_storage
+description: SharedPreferences wrapper for both Mobile (Android/iOS), Web and Desktop (Windows, macOS, Linux)
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  shared_preferences: ^0.5.6+2
+  shared_preferences_web: ^0.1.2+4
+  shared_preferences_macos: ^0.0.1+6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
