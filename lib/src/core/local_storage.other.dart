@@ -166,11 +166,14 @@ class LocalStorageStore implements LocalStorageInterface {
     final file = File(_prefFileName);
     if (await file.exists()) {
       final jsonString = await file.readAsString();
-      final map = json.decode(jsonString);
-      return map;
+      if (jsonString?.isNotEmpty == true) {
+        final map = json.decode(jsonString);
+        return map;
+      }
+    } else {
+      await file.create();
     }
 
-    await file.create();
     return {};
   }
 }

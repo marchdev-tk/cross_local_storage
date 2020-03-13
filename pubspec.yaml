@@ -1,5 +1,5 @@
 name: local_storage
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/marchdev-tk/local_storage
 description: SharedPreferences wrapper for both Mobile (Android/iOS), Web and Desktop (Windows, macOS, Linux)
 
