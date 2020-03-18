@@ -1,6 +1,7 @@
 # cross_local_storage
 
 ![Build](https://github.com/marchdev-tk/cross_local_storage/workflows/build/badge.svg)
+[![Pub](https://img.shields.io/pub/v/cross_local_storage.svg)](https://pub.dartlang.org/packages/cross_local_storage)
 ![GitHub](https://img.shields.io/github/license/marchdev-tk/cross_local_storage)
 ![GitHub stars](https://img.shields.io/github/stars/marchdev-tk/cross_local_storage?style=social)
 
@@ -13,9 +14,15 @@ Neither platform can guarantee that writes will be persisted to disk after retur
 In order to use this plugin, add dependency in the `pubspec.yaml`:
 
 ```yaml
+cross_local_storage: ^1.1.0
+```
+
+or
+
+```yaml
 cross_local_storage:
-    git:
-      url: https://github.com/marchdev-tk/cross_local_storage
+  git:
+    url: https://github.com/marchdev-tk/cross_local_storage
 ```
 
 Add an import to dart file:

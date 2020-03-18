@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.1]
+
+* Updated readme
+
 ## [1.1.0]
 
 * Renamed plugin to cross_local_storage
