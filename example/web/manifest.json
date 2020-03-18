@@ -1,6 +1,6 @@
 {
-    "name": "local_storage_example",
-    "short_name": "local_storage_example",
+    "name": "cross_local_storage_example",
+    "short_name": "cross_local_storage_example",
     "start_url": ".",
     "display": "minimal-ui",
     "background_color": "#0175C2",

@@ -2,7 +2,7 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-library local_storage;
+library cross_local_storage;
 
 export 'src/core/local_storage.interface.dart';
 export 'src/local_storage.stub.dart'

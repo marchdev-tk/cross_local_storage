@@ -1,13 +1,13 @@
-# local_storage_example
+# cross_local_storage_example
 
-Demonstrates how to use the local_storage package.
+Demonstrates how to use the cross_local_storage package.
 
 ## Usage
 
 ```dart
 import 'package:flutter/material.dart';
 
-import 'package:local_storage/local_storage.dart';
+import 'package:cross_local_storage/local_storage.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

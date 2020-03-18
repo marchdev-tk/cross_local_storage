@@ -14,7 +14,7 @@
 
 #include "window_configuration.h"
 
-const wchar_t *kFlutterWindowTitle = L"local_storage_example";
+const wchar_t *kFlutterWindowTitle = L"cross_local_storage_example";
 const unsigned int kFlutterWindowOriginX = 10;
 const unsigned int kFlutterWindowOriginY = 10;
 const unsigned int kFlutterWindowWidth = 800;
