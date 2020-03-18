@@ -21,14 +21,14 @@ cross_local_storage:
 Add an import to dart file:
 
 ```dart
-import 'package:cross_local_storage/local_storage.dart';
+import 'package:cross_local_storage/cross_local_storage.dart';
 ```
 
 ### Example
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:cross_local_storage/local_storage.dart';
+import 'package:cross_local_storage/cross_local_storage.dart';
 
 void main() {
   runApp(MaterialApp(

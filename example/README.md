@@ -7,7 +7,7 @@ Demonstrates how to use the cross_local_storage package.
 ```dart
 import 'package:flutter/material.dart';
 
-import 'package:cross_local_storage/local_storage.dart';
+import 'package:cross_local_storage/cross_local_storage.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

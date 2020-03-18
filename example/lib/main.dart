@@ -4,7 +4,7 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:cross_local_storage/local_storage.dart';
+import 'package:cross_local_storage/cross_local_storage.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
