@@ -1,10 +1,10 @@
-// Copyright (c) 2020, the MarchDev Toolkit project authors. Please see the AUTHORS file
+// Copyright (c) 2021, the MarchDev Toolkit project authors. Please see the AUTHORS file
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
 /// Wraps NSUserDefaults (on iOS and macOS), SharedPreferences (on Android),
-/// LocalStorage (on Web) and JSON file (on Windows and Linux), providing a
-/// persistent store for simple data.
+/// LocalStorage (on Web) and native preference file (on Windows and Linux),
+/// providing a persistent store for simple data.
 ///
 /// Data is persisted to disk asynchronously.
 abstract class LocalStorageInterface {
@@ -16,23 +16,23 @@ abstract class LocalStorageInterface {
 
   /// Reads a value from persistent storage, throwing an exception if it's not a
   /// bool.
-  bool getBool(String key);
+  bool? getBool(String key);
 
   /// Reads a value from persistent storage, throwing an exception if it's not
   /// an int.
-  int getInt(String key);
+  int? getInt(String key);
 
   /// Reads a value from persistent storage, throwing an exception if it's not a
   /// double.
-  double getDouble(String key);
+  double? getDouble(String key);
 
   /// Reads a value from persistent storage, throwing an exception if it's not a
   /// String.
-  String getString(String key);
+  String? getString(String key);
 
   /// Reads a set of string values from persistent storage, throwing an
   /// exception if it's not a string set.
-  List<String> getStringList(String key);
+  List<String>? getStringList(String key);
 
   /// Saves a boolean [value] to persistent storage in the background.
   ///
@@ -62,7 +62,7 @@ abstract class LocalStorageInterface {
   Future<bool> setStringList(String key, List<String> value);
 
   /// Removes an entry from persistent storage.
-  Future<bool> remove(String key);
+  Future<bool>? remove(String key);
 
   /// Completes with true once the user preferences for the app has been cleared.
   Future<bool> clear();

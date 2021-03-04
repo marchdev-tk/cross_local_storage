@@ -1,4 +1,4 @@
-// Copyright (c) 2020, the MarchDev Toolkit project authors. Please see the AUTHORS file
+// Copyright (c) 2021, the MarchDev Toolkit project authors. Please see the AUTHORS file
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
@@ -32,7 +32,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final _sharedPrefController = TextEditingController();
 
-  LocalStorageInterface _localStorage;
+  late LocalStorageInterface _localStorage;
   String _prefStatus = '';
 
   void _initLocalStorage() async {
@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           Center(
-            child: RaisedButton(
+            child: ElevatedButton(
               onPressed: () async {
                 final result = await _localStorage.setString(
                     'value', _sharedPrefController.text);
@@ -80,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           Center(
-            child: RaisedButton(
+            child: ElevatedButton(
               onPressed: () {
                 final result = _localStorage.getString('value');
                 setState(() =>
@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           Center(
-            child: RaisedButton(
+            child: ElevatedButton(
               onPressed: () {
                 _localStorage.clear();
                 setState(() => _prefStatus = 'Cleared Shared Prefs');

@@ -1,4 +1,4 @@
-// Copyright (c) 2020, the MarchDev Toolkit project authors. Please see the AUTHORS file
+// Copyright (c) 2021, the MarchDev Toolkit project authors. Please see the AUTHORS file
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
@@ -8,9 +8,8 @@ import 'dart:async' show FutureOr;
 
 import 'local_storage.interface.dart';
 
-/// Wraps NSUserDefaults (on iOS and macOS), SharedPreferences (on Android),
-/// LocalStorage (on Web) and JSON file (on Windows and Linux), providing a
-/// persistent store for simple data.
+/// Wraps IO of a JSON file, providing a persistent store for simple data,
+/// just like usual SharePreferences.
 ///
 /// Data is persisted to disk asynchronously.
 class LocalStorageStore implements LocalStorageInterface {
@@ -24,59 +23,59 @@ class LocalStorageStore implements LocalStorageInterface {
   ///
   /// It is NOT guaranteed that this cache and the device prefs will remain
   /// in sync since the setter method might fail for any reason.
-  final Map<String, Object> _preferenceCache;
+  final Map<String, Object>? _preferenceCache;
 
   static const String _prefFileName = 'preferences.json';
 
-  static LocalStorageStore _instance;
+  static LocalStorageStore? _instance;
   static FutureOr<LocalStorageStore> getInstance() async {
     if (_instance == null) {
       final preferences = await _getSharedPreferencesMap();
       _instance = LocalStorageStore._(preferences);
     }
 
-    return _instance;
+    return _instance!;
   }
 
   /// Returns all keys in the persistent storage.
   @override
-  Set<String> getKeys() => Set<String>.from(_preferenceCache.keys);
+  Set<String> getKeys() => Set<String>.from(_preferenceCache!.keys);
 
   /// Reads a value of any type from persistent storage.
   @override
-  dynamic get(String key) => _preferenceCache[key];
+  dynamic get(String key) => _preferenceCache![key];
 
   /// Reads a value from persistent storage, throwing an exception if it's not a
   /// bool.
   @override
-  bool getBool(String key) => _preferenceCache[key];
+  bool? getBool(String key) => _preferenceCache![key] as bool?;
 
   /// Reads a value from persistent storage, throwing an exception if it's not
   /// an int.
   @override
-  int getInt(String key) => _preferenceCache[key];
+  int? getInt(String key) => _preferenceCache![key] as int?;
 
   /// Reads a value from persistent storage, throwing an exception if it's not a
   /// double.
   @override
-  double getDouble(String key) => _preferenceCache[key];
+  double? getDouble(String key) => _preferenceCache![key] as double?;
 
   /// Reads a value from persistent storage, throwing an exception if it's not a
   /// String.
   @override
-  String getString(String key) => _preferenceCache[key];
+  String? getString(String key) => _preferenceCache![key] as String?;
 
   /// Reads a set of string values from persistent storage, throwing an
   /// exception if it's not a string set.
   @override
-  List<String> getStringList(String key) {
-    List<Object> list = _preferenceCache[key];
+  List<String>? getStringList(String key) {
+    List<Object>? list = _preferenceCache![key] as List<Object>?;
     if (list != null && list is! List<String>) {
       list = list.cast<String>().toList();
-      _preferenceCache[key] = list;
+      _preferenceCache![key] = list;
     }
     // Make a copy of the list so that later mutations won't propagate
-    return list?.toList();
+    return list?.toList() as List<String>?;
   }
 
   /// Saves a boolean [value] to persistent storage in the background.
@@ -116,18 +115,18 @@ class LocalStorageStore implements LocalStorageInterface {
 
   /// Removes an entry from persistent storage.
   @override
-  Future<bool> remove(String key) => _preferenceCache.remove(key);
+  Future<bool>? remove(String key) => _preferenceCache!.remove(key) as Future<bool>?;
 
   /// Completes with true once the user preferences for the app has been cleared.
   @override
   Future<bool> clear() async {
-    _preferenceCache.clear();
+    _preferenceCache!.clear();
     return true;
   }
 
   /// Returns true if persistent storage the contains the given [key].
   @override
-  bool containsKey(String key) => _preferenceCache.containsKey(key);
+  bool containsKey(String key) => _preferenceCache!.containsKey(key);
 
   /// Fetches the latest values from the host platform.
   ///
@@ -135,20 +134,20 @@ class LocalStorageStore implements LocalStorageInterface {
   /// (without using the plugin) while the app is running.
   @override
   Future<void> reload() async {
-    final preferences = await _getSharedPreferencesMap();
-    _preferenceCache.clear();
-    _preferenceCache.addAll(preferences);
+    final preferences = await (_getSharedPreferencesMap() as FutureOr<Map<String, Object>>);
+    _preferenceCache!.clear();
+    _preferenceCache!.addAll(preferences);
   }
 
   Future<bool> _setValue(String valueType, String key, Object value) {
     if (value == null) {
-      _preferenceCache.remove(key);
+      _preferenceCache!.remove(key);
     } else {
       if (value is List<String>) {
         // Make a copy of the list so that later mutations won't propagate
-        _preferenceCache[key] = value.toList();
+        _preferenceCache![key] = value.toList();
       } else {
-        _preferenceCache[key] = value;
+        _preferenceCache![key] = value;
       }
     }
 
@@ -162,11 +161,11 @@ class LocalStorageStore implements LocalStorageInterface {
     return true;
   }
 
-  static Future<Map<String, Object>> _getSharedPreferencesMap() async {
+  static Future<Map<String, Object>?> _getSharedPreferencesMap() async {
     final file = File(_prefFileName);
     if (await file.exists()) {
       final jsonString = await file.readAsString();
-      if (jsonString?.isNotEmpty == true) {
+      if (jsonString.isNotEmpty == true) {
         final map = json.decode(jsonString);
         return map;
       }

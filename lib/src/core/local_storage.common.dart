@@ -1,4 +1,4 @@
-// Copyright (c) 2020, the MarchDev Toolkit project authors. Please see the AUTHORS file
+// Copyright (c) 2021, the MarchDev Toolkit project authors. Please see the AUTHORS file
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
@@ -9,8 +9,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'local_storage.interface.dart';
 
 /// Wraps NSUserDefaults (on iOS and macOS), SharedPreferences (on Android),
-/// LocalStorage (on Web) and JSON file (on Windows and Linux), providing a
-/// persistent store for simple data.
+/// LocalStorage (on Web) and native preference file (on Windows and Linux),
+/// providing a persistent store for simple data.
 ///
 /// Data is persisted to disk asynchronously.
 class LocalStorageStore implements LocalStorageInterface {
@@ -18,7 +18,7 @@ class LocalStorageStore implements LocalStorageInterface {
 
   final SharedPreferences _pref;
 
-  static LocalStorageInterface _instance;
+  static LocalStorageInterface? _instance;
   static FutureOr<LocalStorageInterface> getInstance() async {
     return _instance ??=
         LocalStorageStore._(await SharedPreferences.getInstance());
@@ -35,27 +35,27 @@ class LocalStorageStore implements LocalStorageInterface {
   /// Reads a value from persistent storage, throwing an exception if it's not a
   /// bool.
   @override
-  bool getBool(String key) => _pref.getBool(key);
+  bool? getBool(String key) => _pref.getBool(key);
 
   /// Reads a value from persistent storage, throwing an exception if it's not
   /// an int.
   @override
-  int getInt(String key) => _pref.getInt(key);
+  int? getInt(String key) => _pref.getInt(key);
 
   /// Reads a value from persistent storage, throwing an exception if it's not a
   /// double.
   @override
-  double getDouble(String key) => _pref.getDouble(key);
+  double? getDouble(String key) => _pref.getDouble(key);
 
   /// Reads a value from persistent storage, throwing an exception if it's not a
   /// String.
   @override
-  String getString(String key) => _pref.getString(key);
+  String? getString(String key) => _pref.getString(key);
 
   /// Reads a set of string values from persistent storage, throwing an
   /// exception if it's not a string set.
   @override
-  List<String> getStringList(String key) => _pref.getStringList(key);
+  List<String>? getStringList(String key) => _pref.getStringList(key);
 
   /// Saves a boolean [value] to persistent storage in the background.
   ///

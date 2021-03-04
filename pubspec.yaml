@@ -1,22 +1,24 @@
 name: cross_local_storage
 version: 1.1.1
 homepage: https://github.com/marchdev-tk/cross_local_storage
-description: SharedPreferences wrapper for both Mobile (Android/iOS), Web and Desktop (Windows, macOS, Linux).
+description: SharedPreferences wrapper for both Mobile (Android/iOS), Web and Desktop (Windows, macOS, Linux). Also provides JSON file storage.
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   
-  shared_preferences: ^0.5.6+2
-  shared_preferences_web: ^0.1.2+4
-  shared_preferences_macos: ^0.0.1+6
+  shared_preferences: ^2.0.3
+  shared_preferences_web: ^2.0.0
+  shared_preferences_macos: ^2.0.0
+  shared_preferences_windows: ^2.0.0
+  shared_preferences_linux: ^2.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  pedantic: ^1.8.0
+  pedantic: ^1.11.0
 
 flutter:
