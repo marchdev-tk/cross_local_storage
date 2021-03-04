@@ -62,7 +62,7 @@ abstract class LocalStorageInterface {
   Future<bool> setStringList(String key, List<String> value);
 
   /// Removes an entry from persistent storage.
-  Future<bool>? remove(String key);
+  Future<bool> remove(String key);
 
   /// Completes with true once the user preferences for the app has been cleared.
   Future<bool> clear();

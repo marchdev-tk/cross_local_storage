@@ -2,9 +2,9 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'dart:io' show File;
-import 'dart:convert' show json;
 import 'dart:async' show FutureOr;
+import 'dart:convert' show json;
+import 'dart:io' show File;
 
 import 'local_storage.interface.dart';
 
@@ -115,7 +115,13 @@ class LocalStorageStore implements LocalStorageInterface {
 
   /// Removes an entry from persistent storage.
   @override
-  Future<bool>? remove(String key) => _preferenceCache!.remove(key) as Future<bool>?;
+  Future<bool> remove(String key) async {
+    final removedValue = _preferenceCache!.remove(key);
+    if (removedValue == null) {
+      return false;
+    }
+    return true;
+  }
 
   /// Completes with true once the user preferences for the app has been cleared.
   @override
@@ -134,12 +140,13 @@ class LocalStorageStore implements LocalStorageInterface {
   /// (without using the plugin) while the app is running.
   @override
   Future<void> reload() async {
-    final preferences = await (_getSharedPreferencesMap() as FutureOr<Map<String, Object>>);
+    final preferences =
+        await (_getSharedPreferencesMap() as FutureOr<Map<String, Object>>);
     _preferenceCache!.clear();
     _preferenceCache!.addAll(preferences);
   }
 
-  Future<bool> _setValue(String valueType, String key, Object value) {
+  Future<bool> _setValue(String valueType, String key, Object? value) {
     if (value == null) {
       _preferenceCache!.remove(key);
     } else {

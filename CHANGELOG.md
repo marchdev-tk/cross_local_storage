@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.1
+
+* Fixed lint issues
+* Fixed interface method `remove`
+* Fixed method `remove` for json storage
+
 ## 2.0.0
 
 * Updated to NNBD
