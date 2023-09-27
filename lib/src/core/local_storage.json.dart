@@ -25,7 +25,13 @@ class LocalStorageStore implements LocalStorageInterface {
   /// in sync since the setter method might fail for any reason.
   final Map<String, Object>? _preferenceCache;
 
+  static String _prefFileDir = '';
+  static void setPreferencesDirectory(String directory) =>
+      _prefFileDir = directory;
+
   static const String _prefFileName = 'preferences.json';
+  static String get _prefFilePath =>
+      _prefFileDir.isNotEmpty ? '$_prefFileDir/$_prefFileName' : _prefFileName;
 
   static LocalStorageStore? _instance;
   static FutureOr<LocalStorageStore> getInstance() async {
@@ -162,14 +168,14 @@ class LocalStorageStore implements LocalStorageInterface {
   }
 
   Future<bool> _commit() async {
-    final file = File(_prefFileName);
+    final file = File(_prefFilePath);
     final jsonString = json.encode(_preferenceCache);
     await file.writeAsString(jsonString);
     return true;
   }
 
   static Future<Map<String, Object>?> _getSharedPreferencesMap() async {
-    final file = File(_prefFileName);
+    final file = File(_prefFilePath);
     if (await file.exists()) {
       final jsonString = await file.readAsString();
       if (jsonString.isNotEmpty == true) {
