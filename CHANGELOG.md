@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.0
+
+* Updated dependencies to latest (`dart >= 3.0.0` / `shared_preferences >= 2.2.1`)
+* Updated example project
+* Added ability to set preferences directory for JSON CrossLocalStorage via `setPreferencesDirectory`
+
 ## 2.0.1
 
 * Fixed lint issues
