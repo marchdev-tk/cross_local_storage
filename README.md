@@ -14,7 +14,7 @@ Neither platform can guarantee that writes will be persisted to disk after retur
 In order to use this plugin, add dependency in the `pubspec.yaml`:
 
 ```yaml
-cross_local_storage: ^1.1.0
+cross_local_storage: any
 ```
 
 or
