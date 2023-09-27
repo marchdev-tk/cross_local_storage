@@ -1,11 +1,11 @@
 {
-    "name": "cross_local_storage_example",
-    "short_name": "cross_local_storage_example",
+    "name": "CrossLocalStorage Example",
+    "short_name": "CrossLocalStorage Example",
     "start_url": ".",
-    "display": "minimal-ui",
+    "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Demonstrates how to use the cross_local_storage package.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
@@ -18,6 +18,18 @@
             "src": "icons/Icon-512.png",
             "sizes": "512x512",
             "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
         }
     ]
 }

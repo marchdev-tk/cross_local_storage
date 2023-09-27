@@ -8,10 +8,12 @@ import 'package:cross_local_storage/cross_local_storage.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,14 +21,16 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -49,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Local Storage Example'),
+        title: const Text('Local Storage Example'),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -57,16 +61,17 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           Center(
             child: ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: 300),
+              constraints: const BoxConstraints(maxWidth: 300),
               child: TextField(
                 controller: _sharedPrefController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'Type something to store...',
                 ),
               ),
             ),
           ),
+          const SizedBox(height: 12),
           Center(
             child: ElevatedButton(
               onPressed: () async {
@@ -76,9 +81,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     ? 'Successfuly added to the Shared Prefs'
                     : 'Error occured while adding to the Shared Prefs');
               },
-              child: Text('Add to shared prefs'),
+              child: const Text('Add to shared prefs'),
             ),
           ),
+          const SizedBox(height: 12),
           Center(
             child: ElevatedButton(
               onPressed: () {
@@ -86,18 +92,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 setState(() =>
                     _prefStatus = 'Retreived value from Shared Prefs: $result');
               },
-              child: Text('Get from shared prefs'),
+              child: const Text('Get from shared prefs'),
             ),
           ),
+          const SizedBox(height: 12),
           Center(
             child: ElevatedButton(
               onPressed: () {
                 _localStorage.clear();
                 setState(() => _prefStatus = 'Cleared Shared Prefs');
               },
-              child: Text('Clear shared prefs'),
+              child: const Text('Clear shared prefs'),
             ),
           ),
+          const SizedBox(height: 12),
           Center(child: Text(_prefStatus)),
         ],
       ),
