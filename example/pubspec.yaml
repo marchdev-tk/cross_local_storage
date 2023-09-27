@@ -2,7 +2,7 @@ name: cross_local_storage_example
 description: Demonstrates how to use the cross_local_storage package.
 
 environment:
-  sdk: '>=3.0.0 <5.0.0'
+  sdk: '>=3.0.0 <4.0.0'
   flutter: '>=3.7.0'
 
 dependencies:
