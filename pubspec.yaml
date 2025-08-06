@@ -1,5 +1,5 @@
 name: cross_local_storage
-version: 3.0.0
+version: 3.1.0
 homepage: https://github.com/marchdev-tk/cross_local_storage
 description: SharedPreferences wrapper for both Mobile (Android/iOS), Web and Desktop (Windows, macOS, Linux). Also provides JSON file storage.
 
