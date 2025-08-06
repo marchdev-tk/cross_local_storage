@@ -14,17 +14,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: 'Checkout'
+    - name: Checkout
       uses: actions/checkout@v4
 
     - name: 'Setup Dart'
       uses: dart-lang/setup-dart@v1.6.0
 
+    - name: 'Setup Flutter'
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.29.3'
+        channel: 'stable'
+
     - name: 'Get Packages'
-      run: dart pub get
+      run: flutter pub get
 
     - name: 'Dry Run Publishing'
-      run: dart pub publish --dry-run
+      run: flutter packages pub publish --dry-run
 
     - name: 'Publish Artifact'
-      run: dart pub publish --force
+      run: flutter packages pub publish --force
