@@ -1,0 +1,30 @@
+name: build
+
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+
+jobs:
+  publish:
+    environment: ${{ inputs.environment }}
+    permissions:
+      id-token: write
+    
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 'Checkout'
+      uses: actions/checkout@v4
+
+    - name: 'Setup Dart'
+      uses: dart-lang/setup-dart@v1.6.0
+
+    - name: 'Get Packages'
+      run: dart pub get
+
+    - name: 'Dry Run Publishing'
+      run: dart pub publish --dry-run
+
+    - name: 'Publish Artifact'
+      run: dart pub publish --force
