@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.1.0
+
+* Updated dependencies (`dart >= 3.4.0` / `flutter >= 3.22.0` / `shared_preferences >= 2.5.3`)
+
 ## 3.0.0
 
 * Updated dependencies to latest (`dart >= 3.0.0` / `shared_preferences >= 2.2.1`)
